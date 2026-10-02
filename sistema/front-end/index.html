@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sistema de Gestão</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- LOGIN -->
+    <!-- ========================= -->
+
+    <section id="login-screen" class="login-screen">
+
+        <div class="login-card">
+
+            <div class="logo">
+                SG
+            </div>
+
+            <h1>Sistema de Gestão</h1>
+
+            <p class="subtitle">
+                Oficina e serviços automotivos
+            </p>
+
+            <form id="login-form">
+
+                <div class="form-group">
+                    <label for="login-email">
+                        E-mail
+                    </label>
+
+                    <input
+                        id="login-email"
+                        type="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="login-senha">
+                        Senha
+                    </label>
+
+                    <input
+                        id="login-senha"
+                        type="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+
+                <button
+                    class="btn btn-primary btn-full"
+                    type="submit"
+                >
+                    Entrar
+                </button>
+
+            </form>
+
+            <div
+                id="login-message"
+                class="message"
+            ></div>
+
+            <div class="demo-login">
+                <strong>Acesso de teste</strong>
+                <br>
+                admin@oficina.local
+                <br>
+                Senha: 123456
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- APLICAÇÃO -->
+    <!-- ========================= -->
+
+    <section id="app-screen" class="app-screen hidden">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="logo small">
+                    SG
+                </div>
+
+                <div>
+                    <strong>Gestão</strong>
+                    <span>Oficina</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <button
+                    class="nav-button active"
+                    data-page="dashboard"
+                >
+                    Dashboard
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="clientes"
+                >
+                    Clientes
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="veiculos"
+                >
+                    Veículos
+                </button>
+
+                <button
+                    class="nav-button"
+                    data-page="os"
+                >
+                    Ordens de Serviço
+                </button>
+
+            </nav>
+
+            <button
+                id="logout-button"
+                class="logout-button"
+            >
+                Sair
+            </button>
+
+        </aside>
+
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h2 id="page-title">
+                        Dashboard
+                    </h2>
+
+                    <span id="page-subtitle">
+                        Visão geral do sistema
+                    </span>
+                </div>
+
+                <div class="user-info">
+                    <span>Usuário</span>
+                    <strong id="user-name">
+                        -
+                    </strong>
+                </div>
+
+            </header>
+
+
+            <!-- ========================= -->
+            <!-- DASHBOARD -->
+            <!-- ========================= -->
+
+            <section
+                id="page-dashboard"
+                class="page"
+            >
+
+                <div class="welcome-card">
+
+                    <div>
+                        <h1>
+                            Olá, <span id="dashboard-user">
+                                usuário
+                            </span>!
+                        </h1>
+
+                        <p>
+                            Bem-vindo ao sistema de gestão.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span>Clientes</span>
+                        <strong id="total-clientes">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Veículos</span>
+                        <strong id="total-veiculos">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>Ordens de Serviço</span>
+                        <strong id="total-os">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>OS em aberto</span>
+                        <strong id="total-os-abertas">0</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- CLIENTES -->
+            <!-- ========================= -->
+
+            <section
+                id="page-clientes"
+                class="page hidden"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <h1>Clientes</h1>
+                        <p>
+                            Cadastre e gerencie seus clientes.
+                        </p>
+                    </div>
+
+                    <button
+                        id="btn-novo-cliente"
+                        class="btn btn-primary"
+                    >
+                        + Novo cliente
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="toolbar">
+
+                        <input
+                            id="cliente-busca"
+                            type="search"
+                            placeholder="Buscar por nome ou CPF..."
+                        >
+
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Telefone</th>
+                                    <th>E-mail</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="clientes-tbody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- VEÍCULOS -->
+            <!-- ========================= -->
+
+            <section
+                id="page-veiculos"
+                class="page hidden"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <h1>Veículos</h1>
+                        <p>
+                            Veículos vinculados aos clientes.
+                        </p>
+                    </div>
+
+                    <button
+                        id="btn-novo-veiculo"
+                        class="btn btn-primary"
+                    >
+                        + Novo veículo
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Placa</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Ano</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="veiculos-tbody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- ORDENS DE SERVIÇO -->
+            <!-- ========================= -->
+
+            <section
+                id="page-os"
+                class="page hidden"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <h1>Ordens de Serviço</h1>
+                        <p>
+                            Histórico e acompanhamento das manutenções.
+                        </p>
+                    </div>
+
+                    <button
+                        id="btn-nova-os"
+                        class="btn btn-primary"
+                    >
+                        + Nova OS
+                    </button>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Cliente</th>
+                                    <th>Veículo</th>
+                                    <th>Descrição</th>
+                                    <th>Status</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="os-tbody"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- MODAL CLIENTE -->
+    <!-- ========================= -->
+
+    <div
+        id="modal-cliente"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2 id="modal-cliente-title">
+                    Novo cliente
+                </h2>
+
+                <button
+                    class="modal-close"
+                    data-close="modal-cliente"
+                >
+                    ×
+                </button>
+            </div>
+
+            <form id="cliente-form">
+
+                <input
+                    type="hidden"
+                    id="cliente-id"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Nome *</label>
+
+                        <input
+                            id="cliente-nome"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>CPF *</label>
+
+                        <input
+                            id="cliente-cpf"
+                            maxlength="14"
+                            placeholder="000.000.000-00"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone</label>
+
+                        <input
+                            id="cliente-telefone"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail</label>
+
+                        <input
+                            id="cliente-email"
+                            type="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Endereço</label>
+
+                        <input
+                            id="cliente-endereco"
+                        >
+                    </div>
+
+                </div>
+
+                <div
+                    id="cliente-message"
+                    class="message"
+                ></div>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-close="modal-cliente"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- MODAL VEÍCULO -->
+    <!-- ========================= -->
+
+    <div
+        id="modal-veiculo"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <h2>
+                    Novo veículo
+                </h2>
+
+                <button
+                    class="modal-close"
+                    data-close="modal-veiculo"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <form id="veiculo-form">
+
+                <input
+                    type="hidden"
+                    id="veiculo-id"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+                        <label>Cliente *</label>
+
+                        <select
+                            id="veiculo-cliente"
+                            required
+                        >
+                            <option value="">
+                                Selecione um cliente
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Placa *</label>
+
+                        <input
+                            id="veiculo-placa"
+                            maxlength="8"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Marca *</label>
+
+                        <input
+                            id="veiculo-marca"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Modelo *</label>
+
+                        <input
+                            id="veiculo-modelo"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ano *</label>
+
+                        <input
+                            id="veiculo-ano"
+                            type="number"
+                            min="1900"
+                            max="2100"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div
+                    id="veiculo-message"
+                    class="message"
+                ></div>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-close="modal-veiculo"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Salvar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- MODAL OS -->
+    <!-- ========================= -->
+
+    <div
+        id="modal-os"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+
+                <h2>
+                    Nova Ordem de Serviço
+                </h2>
+
+                <button
+                    class="modal-close"
+                    data-close="modal-os"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <form id="os-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Cliente *</label>
+
+                        <select
+                            id="os-cliente"
+                            required
+                        >
+                            <option value="">
+                                Selecione
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Veículo *</label>
+
+                        <select
+                            id="os-veiculo"
+                            required
+                        >
+                            <option value="">
+                                Selecione o cliente primeiro
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+
+                        <select id="os-status">
+                            <option value="ABERTA">
+                                Aberta
+                            </option>
+
+                            <option value="EM_ANDAMENTO">
+                                Em andamento
+                            </option>
+
+                            <option value="CONCLUIDA">
+                                Concluída
+                            </option>
+
+                            <option value="CANCELADA">
+                                Cancelada
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor</label>
+
+                        <input
+                            id="os-valor"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Data de abertura</label>
+
+                        <input
+                            id="os-data"
+                            type="datetime-local"
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Descrição *</label>
+
+                        <textarea
+                            id="os-descricao"
+                            rows="4"
+                            required
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <div
+                    id="os-message"
+                    class="message"
+                ></div>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-close="modal-os"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Cadastrar OS
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script
+        type="module"
+        src="app.js"
+    ></script>
+
+</body>
+</html>

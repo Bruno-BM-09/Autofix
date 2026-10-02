@@ -1,0 +1,20 @@
+{
+  "name": "sistema-gestao-oficina",
+  "version": "1.0.0",
+  "description": "Sistema de gestão de clientes, veículos e ordens de serviço",
+  "main": "back-end/server.js",
+  "scripts": {
+    "start": "node back-end/server.js",
+    "dev": "node --watch back-end/server.js",
+    "reset-db": "node -e \"require('./back-end/database').resetDatabase()\""
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^17.2.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0"
+  }
+}
