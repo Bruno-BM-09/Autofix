@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const DATABASE_DIR = path.join(__dirname, '..', 'database');
 const DATABASE_FILE = path.join(DATABASE_DIR, 'sistema.db');
-const SCHEMA_FILE = path.join(__dirname, '..', '..', 'schema.sql');
+const SCHEMA_FILE = path.join(__dirname, '..', '..', 'autofix_db.sql');
 
 if (!fs.existsSync(DATABASE_DIR)) {
     fs.mkdirSync(DATABASE_DIR, { recursive: true });
